@@ -1,2 +1,2 @@
-# play-with-data-structure
-Learn the data structure from scratch.
+# play-with-data-structures
+Learn the data structures from scratch.
