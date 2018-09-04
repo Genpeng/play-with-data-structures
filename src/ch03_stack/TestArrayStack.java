@@ -1,4 +1,4 @@
-package stack;
+package ch03_stack;
 
 /**
  * Test the self-defined stack class.

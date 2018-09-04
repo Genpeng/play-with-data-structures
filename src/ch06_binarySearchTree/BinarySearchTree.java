@@ -1,4 +1,4 @@
-package ch6_binarySearchTree;
+package ch06_binarySearchTree;
 
 import java.util.LinkedList;
 import java.util.Queue;

@@ -1,4 +1,4 @@
-package array;
+package ch02_array;
 
 /**
  * Test the self-defined array.

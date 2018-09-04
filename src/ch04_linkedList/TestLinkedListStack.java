@@ -1,6 +1,6 @@
-package linkedList;
+package ch04_linkedList;
 
-import stack.Stack;
+import ch03_stack.Stack;
 
 /**
  * Test the self-defined stack class {@code LinkedListStack}.

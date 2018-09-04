@@ -1,4 +1,4 @@
-package array;
+package ch02_array;
 
 /**
  * The 498th problem of LeetCode.

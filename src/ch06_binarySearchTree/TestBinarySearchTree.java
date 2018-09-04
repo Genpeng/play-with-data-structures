@@ -1,4 +1,4 @@
-package ch6_binarySearchTree;
+package ch06_binarySearchTree;
 
 /**
  * Test the self-defined binary search tree class.

@@ -1,8 +1,7 @@
-package linkedList;
+package ch04_linkedList;
 
-import queue.ArrayQueue;
-import queue.LoopQueue;
-import queue.Queue;
+import ch03_queue.LoopQueue;
+import ch03_queue.Queue;
 
 import java.util.Random;
 

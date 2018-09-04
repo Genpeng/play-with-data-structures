@@ -1,4 +1,4 @@
-package stack;
+package ch03_stack;
 
 import java.util.Stack;
 

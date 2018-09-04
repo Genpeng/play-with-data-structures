@@ -1,4 +1,4 @@
-package linkedList;
+package ch04_linkedList;
 
 public class ListNode {
     int val;

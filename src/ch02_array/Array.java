@@ -1,4 +1,4 @@
-package array;
+package ch02_array;
 
 /**
  * A self-defined array class, which is efficient and dynamic.

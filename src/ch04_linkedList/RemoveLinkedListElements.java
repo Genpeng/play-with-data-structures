@@ -1,4 +1,4 @@
-package linkedList;
+package ch04_linkedList;
 
 /**
  * The 203th problem of LeetCode.

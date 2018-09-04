@@ -1,6 +1,6 @@
-package linkedList;
+package ch04_linkedList;
 
-import stack.Stack;
+import ch03_stack.Stack;
 
 /**
  * Use the self-defined linked list to implement all the functions of a stack.

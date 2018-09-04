@@ -1,4 +1,4 @@
-package array;
+package ch02_array;
 
 /**
  * The Student class for testing the self-defined class.

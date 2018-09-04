@@ -1,6 +1,6 @@
-package linkedList;
+package ch04_linkedList;
 
-import queue.Queue;
+import ch03_queue.Queue;
 
 /**
  * Use the self-defined class {@code LinkedList} to implement all the functions of a queue.

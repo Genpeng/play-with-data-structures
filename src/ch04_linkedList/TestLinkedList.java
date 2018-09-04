@@ -1,4 +1,4 @@
-package linkedList;
+package ch04_linkedList;
 
 /**
  * Test the self-defined class {@code LinkedList}.

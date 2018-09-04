@@ -1,6 +1,6 @@
-package stack;
+package ch03_stack;
 
-import array.Array;
+import ch02_array.Array;
 
 /**
  * The self-defined stack class.

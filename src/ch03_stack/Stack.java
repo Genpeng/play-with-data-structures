@@ -1,4 +1,4 @@
-package stack;
+package ch03_stack;
 
 /**
  * An interface class which defines the functions a stack must to implement.

@@ -1,4 +1,4 @@
-package linkedList;
+package ch04_linkedList;
 
 /**
  * The way to debug recursive codes.

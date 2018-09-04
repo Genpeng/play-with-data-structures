@@ -1,6 +1,6 @@
-package linkedList;
+package ch04_linkedList;
 
-import queue.Queue;
+import ch03_queue.Queue;
 
 /**
  * Test the self-defined queue class {@code LinkedListQueue}.
