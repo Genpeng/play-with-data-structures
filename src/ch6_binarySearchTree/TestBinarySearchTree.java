@@ -24,10 +24,10 @@ public class TestBinarySearchTree {
 //        bst.postOrder();
 //        System.out.println();
 
-        bst.preOrderNR();
-        System.out.println();
+//        bst.preOrderNR();
+//        System.out.println();
 
-        bst.levelOrder();
-        System.out.println();
+//        bst.levelOrder();
+//        System.out.println();
     }
 }
