@@ -369,7 +369,9 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             } else {
                 Node<T> tmp = stk.pop();
                 while (tmp.right == null) {
-                    if (stk.isEmpty()) return cur.data;
+                    if (stk.isEmpty()) {
+                        return cur.data;
+                    }
                     tmp = stk.pop();
                 }
                 stk.push(tmp.right);
