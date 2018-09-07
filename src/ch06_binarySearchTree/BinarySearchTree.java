@@ -177,6 +177,31 @@ public class BinarySearchTree<E extends Comparable<E>> {
         return node;
     }
 
+//    /**
+//     * Check whether the binary search tree has element <code>e</code> (non-recursive version).
+//     *
+//     * @param e E, the element to find
+//     * @return boolean, true if the binary search tree has element <code>e</code>
+//     */
+//    public boolean contains(E e) {
+//        if (this.root == null) {
+//            return false;
+//        }
+//
+//        Node node = this.root;
+//        while (node != null) {
+//            if (e.equals(node.e)) {
+//                return true;
+//            } else if (e.compareTo(node.e) < 0) {
+//                node = node.left;
+//            } else {
+//                node = node.right;
+//            }
+//        }
+//
+//        return false;
+//    }
+
     /**
      * Check whether the binary search tree has element <code>e</code>.
      *
