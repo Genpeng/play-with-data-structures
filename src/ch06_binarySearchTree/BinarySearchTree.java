@@ -114,6 +114,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 //    public void add(E e) {
 //        if (this.root == null) {
 //            this.root = new Node(e);
+//            size++;
 //        } else {
 //            add(this.root, e);
 //        }
@@ -124,7 +125,6 @@ public class BinarySearchTree<E extends Comparable<E>> {
 //     *
 //     * @param node  Node, the root of binary search tree
 //     * @param e     E, the element to add
-//     * @return Node, the root of the new binary search tree
 //     */
 //    private void add(Node node, E e) {
 //        if (e.equals(node.e)) {
@@ -152,7 +152,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
      * @param e E, the element to add
      */
     public void add(E e) {
-        root = add(root, e);
+        this.root = add(this.root, e);
     }
 
     /**
