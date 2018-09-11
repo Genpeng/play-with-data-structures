@@ -27,10 +27,19 @@ public class BinarySearchTree<E extends Comparable<E>> {
          */
         public Node right;
 
-        public Node(E e) {
+        public Node(E e, Node left, Node right) {
             this.e = e;
-            left = null;
-            right = null;
+            this.left = left;
+            this.right = right;
+        }
+
+        public Node(E e) {
+            this(e, null, null);
+        }
+
+        @Override
+        public String toString() {
+            return e.toString();
         }
     }
 
@@ -233,10 +242,18 @@ public class BinarySearchTree<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * Preorder traversal of the binary search tree.
+     */
     public void preOrder() {
-        preOrder(root);
+        preOrder(this.root);
     }
 
+    /**
+     * Preorder traversal of a binary search tree whose root is <code>node</code>.
+     *
+     * @param node Node, the root of the binary search tree
+     */
     private void preOrder(Node node) {
         if (node == null) {
             return;
@@ -247,36 +264,11 @@ public class BinarySearchTree<E extends Comparable<E>> {
         preOrder(node.right);
     }
 
-    public void inOrder() {
-        inOrder(root);
-    }
-
-    private void inOrder(Node node) {
-        if (node == null) {
-            return;
-        }
-
-        inOrder(node.left);
-        System.out.println(node.e);
-        inOrder(node.right);
-    }
-
-    public void postOrder() {
-        postOrder(root);
-    }
-
-    private void postOrder(Node node) {
-        if (node == null) {
-            return;
-        }
-
-        postOrder(node.left);
-        postOrder(node.right);
-        System.out.println(node.e);
-    }
-
+    /**
+     * Preorder traversal of a binary search tree (non-recursive version).
+     */
     public void preOrderNR() {
-        if (root == null) {
+        if (this.root == null) {
             return;
         }
 
@@ -297,13 +289,64 @@ public class BinarySearchTree<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * Inorder traversal of the binary search tree.
+     */
+    public void inOrder() {
+        inOrder(this.root);
+    }
+
+    /**
+     * Inorder traversal of a binary search tree whose root is <code>node</code>.
+     *
+     * @param node Node, the root of the binary search tree
+     */
+    private void inOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        inOrder(node.left);
+        System.out.println(node.e);
+        inOrder(node.right);
+    }
+
+    // TODO: Finish the non-recursive version of inorder traversal
+
+    /**
+     * Postorder traversal of the binary search tree.
+     */
+    public void postOrder() {
+        postOrder(this.root);
+    }
+
+    /**
+     * Postorder traversal of a binary search tree whose root is <code>node</code>.
+     *
+     * @param node Node, the root of the binary search tree
+     */
+    private void postOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.println(node.e);
+    }
+
+    // TODO: Finish the non-recursive version of postorder traversal
+
+    /**
+     * LevelOrder traversal of a binary search tree.
+     */
     public void levelOrder() {
-        if (root == null) {
+        if (this.root == null) {
             return;
         }
 
         Queue<Node> queue = new LinkedList<>();
-        queue.add(root);
+        queue.add(this.root);
 
         while (!queue.isEmpty()) {
             Node cur = queue.remove();
@@ -325,16 +368,16 @@ public class BinarySearchTree<E extends Comparable<E>> {
      * @return E, the minimum value
      */
     public E minimum() {
-        if (size == 0) {
-            throw new IllegalArgumentException("Binary search tree is empty!!!");
+        if (this.size == 0) {
+            throw new IllegalArgumentException("The binary search tree is empty!!!");
         }
 
-        Node minNode = minimum(root);
+        Node minNode = minimum(this.root);
         return minNode.e;
     }
 
     /**
-     * Find out the minimum value in the binary search tree which root is <code>node</code>.
+     * Find out the minimum value in the binary search tree whose root is <code>node</code>.
      *
      * @param node Node, the root of the binary search tree
      * @return E, the minimum value
@@ -347,15 +390,43 @@ public class BinarySearchTree<E extends Comparable<E>> {
         return minimum(node.left);
     }
 
-    public E maximum() {
-        if (size == 0) {
-            throw new IllegalArgumentException("Binary search tree is empty!!!");
+    /**
+     * Find the minimum value in the binary search tree (non-recursive version).
+     *
+     * @return E, the minimum value
+     */
+    public E minimumNR() {
+        if (this.size == 0) {
+            throw new IllegalArgumentException("The binary search tree is empty!!!");
         }
 
-        Node maxNode = maximum(root);
+        Node node = this.root;
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node.e;
+    }
+
+    /**
+     * Find the maximum value in the binary search tree.
+     *
+     * @return E, the minimum value
+     */
+    public E maximum() {
+        if (this.size == 0) {
+            throw new IllegalArgumentException("The binary search tree is empty!!!");
+        }
+
+        Node maxNode = maximum(this.root);
         return maxNode.e;
     }
 
+    /**
+     * Find out the maximum value in the binary search tree whose root is <code>node</code>.
+     *
+     * @param node Node, the root of the binary search tree
+     * @return E, the minimum value
+     */
     private Node maximum(Node node) {
         if (node.right == null) {
             return node;
@@ -364,10 +435,130 @@ public class BinarySearchTree<E extends Comparable<E>> {
         return maximum(node.right);
     }
 
+    /**
+     * Find the maximum value in the binary search tree (non-recursive version).
+     *
+     * @return E, the minimum value
+     */
+    public E maximumNR() {
+        if (this.size == 0) {
+            throw new IllegalArgumentException("The binary search tree is empty!!!");
+        }
+
+        Node node = this.root;
+        while (node.right != null) {
+            node = node.right;
+        }
+        return node.e;
+    }
+
+    /**
+     * Remove the minimum node from the binary search tree.
+     *
+     * @return E, the data of the minimum node
+     */
+    public E removeMin() {
+        E ret = minimum();
+        this.root = removeMin(this.root);
+        return ret;
+    }
+
+    /**
+     * Remove the minimum node from a binary search tree whose root is <code>node</code>.
+     *
+     * @param node Node, the root of the binary search tree
+     * @return Node, the modified binary search tree whose minimum node is removed
+     */
+    private Node removeMin(Node node) {
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+            --size;
+            return rightNode;
+        }
+
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    /**
+     * Remove the maximum node from the binary search tree.
+     *
+     * @return E, the data of the maximum node
+     */
+    public E removeMax() {
+        E ret = maximum();
+        this.root = removeMax(this.root);
+        return ret;
+    }
+
+    /**
+     * Remove the maximum node from the binary search tree whose root is <code>node</code>.
+     *
+     * @param node Node, the root of the binary search tree
+     * @return Node, the modified binary search tree whose maximum node is removed
+     */
+    private Node removeMax(Node node) {
+        if (node.right == null) {
+            Node leftNode = node.left;
+            node.left = null;
+            --size;
+            return leftNode;
+        }
+
+        node.right = removeMax(node.right);
+        return node;
+    }
+
+    /**
+     * Remove the node from the binary search tree whose data is {@code e}.
+     *
+     * @param e E, the data of the node we want to remove
+     */
+    public void remove(E e) {
+        this.root = remove(this.root, e);
+    }
+
+    private Node remove(Node node, E e) {
+        if (node == null) {
+            return node;
+        }
+
+        if (e.compareTo(node.e) < 0) {
+            node.left = remove(node.left, e);
+            return node;
+        } else if (e.compareTo(node.e) > 0) {
+            node.right = remove(node.right, e);
+            return node;
+        } else { // e.compareTo(node.e) == 0
+            if (node.left == null) {
+                Node rightNode = node.right;
+                node.right = null;
+                --size;
+                return rightNode;
+            }
+
+            if (node.right == null) {
+                Node leftNode = node.left;
+                node.left = null;
+                --size;
+                return leftNode;
+            }
+
+            Node successor = minimum(node.right);
+            successor.right = removeMin(node.right);
+//            ++size;
+            successor.left = node.left;
+//            --size;
+            node.left = node.right = null;
+            return successor;
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
-        generateBSTString(root, 0, res);
+        generateBSTString(this.root, 0, res);
         return res.toString();
     }
 
@@ -385,7 +576,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
     private String generateDepthString(int depth) {
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < depth; ++i) {
-            res.append("  ");
+            res.append("--");
         }
         return res.toString();
     }

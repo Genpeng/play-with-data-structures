@@ -1,16 +1,17 @@
-package ch06_binarySearchTree.demo; /**
- * *************************************************************************
- * The  generic Binary Search Tree class.
- * <p>
- * V.S.Adamchik 2010
- *****************************************************************************/
+package ch06_binarySearchTree.demo;
 
 import java.util.*;
+
+/****************************************************************************
+ * The  generic binary search tree (BST) class                              *
+ *                                                                          *
+ * V.S.Adamchik 2010                                                        *
+ ****************************************************************************/
 
 public class BST<T extends Comparable<T>> implements Iterable<T> {
     public static void main(String[] args) {
         Integer[] a = {1, 5, 2, 7, 4};
-        BST<Integer> bst = new BST<Integer>();
+        BST<Integer> bst = new BST<>();
         for (Integer n : a) {
             bst.insert(n);
         }
@@ -21,7 +22,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         //testing comparator
         //build a mirror BST with a rule:  Left > Parent > Right
         //code for the comparator at the bottom of the file
-        bst = new BST<Integer>(new MyComp1());
+        bst = new BST<>(new MyComp1());
         for (Integer n : a) {
             bst.insert(n);
         }
@@ -53,7 +54,6 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         System.out.println("width = " + bst.width());
     }
 
-
     private Node<T> root;
     private Comparator<T> comparator;
 
@@ -80,6 +80,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
      *            INSERT
      *
      ******************************************************/
+
     public void insert(T data) {
         root = insert(root, data);
     }
@@ -106,6 +107,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
      *            SEARCH
      *
      ******************************************************/
+
     public boolean search(T toSearch) {
         return search(root, toSearch);
     }
