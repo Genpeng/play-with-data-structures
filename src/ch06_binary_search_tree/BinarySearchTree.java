@@ -519,6 +519,13 @@ public class BinarySearchTree<E extends Comparable<E>> {
         this.root = remove(this.root, e);
     }
 
+    /**
+     * Remove the node with its data is {@code e} from a binary search tree whose root is {@code node}.
+     *
+     * @param node Node, the root of the binary search tree
+     * @param e    E, the data we want to remove
+     * @return Node, a modified binary search tree
+     */
     private Node remove(Node node, E e) {
         if (node == null) {
             return node;
