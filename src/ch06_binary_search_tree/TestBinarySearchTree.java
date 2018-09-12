@@ -103,10 +103,10 @@ public class TestBinarySearchTree {
 //        System.out.println("Success ( ^ _ ^ ) V");
 
         // 测试 `remove(...)` 方法
-        bst.preOrder();
-        System.out.println();
-        bst.remove(3);
-        bst.preOrder();
-        System.out.println();
+//        bst.preOrder();
+//        System.out.println();
+//        bst.remove(3);
+//        bst.preOrder();
+//        System.out.println();
     }
 }

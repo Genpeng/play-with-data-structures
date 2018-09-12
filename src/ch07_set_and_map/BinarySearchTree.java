@@ -564,11 +564,11 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     private void generateBSTString(Node node, int depth, StringBuilder res) {
         if (node == null) {
-            res.append(generateDepthString(depth) + "null\n");
+            res.append(generateDepthString(depth)).append("null\n");
             return;
         }
 
-        res.append(generateDepthString(depth) + node.e + "\n");
+        res.append(generateDepthString(depth)).append(node.e).append("\n");
         generateBSTString(node.left, depth + 1, res);
         generateBSTString(node.right, depth + 1, res);
     }
