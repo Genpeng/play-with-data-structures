@@ -1,4 +1,4 @@
-package ch04_linkedList;
+package ch04_linked_list;
 
 /**
  * A self-defined linked list class.

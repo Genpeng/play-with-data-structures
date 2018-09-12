@@ -1,4 +1,4 @@
-package ch06_binarySearchTree;
+package ch07_set_and_map;
 
 import java.util.LinkedList;
 import java.util.Queue;

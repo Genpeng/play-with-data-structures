@@ -1,7 +1,5 @@
-package ch06_binarySearchTree;
+package ch06_binary_search_tree;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 
 /**

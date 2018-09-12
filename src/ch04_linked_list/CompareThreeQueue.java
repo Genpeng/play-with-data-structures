@@ -1,4 +1,4 @@
-package ch04_linkedList;
+package ch04_linked_list;
 
 import ch03_queue.LoopQueue;
 import ch03_queue.Queue;

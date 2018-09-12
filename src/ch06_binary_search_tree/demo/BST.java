@@ -1,4 +1,4 @@
-package ch06_binarySearchTree.demo;
+package ch06_binary_search_tree.demo;
 
 import java.util.*;
 
