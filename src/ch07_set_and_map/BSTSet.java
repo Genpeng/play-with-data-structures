@@ -1,7 +1,6 @@
 package ch07_set_and_map;
 
-import java.util.ArrayList;
-import java.util.List;
+import ch06_binary_search_tree.BinarySearchTree;
 
 /**
  * A self-defined set class with a binary search tree as data container.
