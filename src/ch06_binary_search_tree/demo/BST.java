@@ -380,7 +380,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             }
 
             return cur.data;
-        }//end of next()
+        } //end of next()
 
         @Override
         public void remove() {
