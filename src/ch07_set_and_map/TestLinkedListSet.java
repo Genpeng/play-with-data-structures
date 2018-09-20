@@ -5,19 +5,19 @@ import util.FileUtil;
 import java.util.List;
 
 /**
- * Test self-defined set class -- {@code BSTSet}.
+ * Test the self-defined set class -- {@code LinkedListSet}.
  *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/09/20
  */
-public class TestBSTSet {
+public class TestLinkedListSet {
     public static void main(String[] args) {
         String pathname = "data/pride-and-prejudice.txt";
         List<String> wordList = FileUtil.getAllWords(pathname);
         System.out.println(pathname);
         System.out.println("The number of words in the file is: " + wordList.size());
 
-        Set<String> wordSet = new BSTSet<>();
+        Set<String> wordSet = new LinkedListSet<>();
         for (String word : wordList) {
             wordSet.add(word);
         }

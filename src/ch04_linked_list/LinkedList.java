@@ -70,7 +70,7 @@ public class LinkedList<E> {
 //        }
 
         for (Node cur = dummyHead.next; cur != null; cur = cur.next) {
-            res.append(cur + " -> ");
+            res.append(cur).append(" -> ");
         }
         res.append("null");
         return res.toString();
