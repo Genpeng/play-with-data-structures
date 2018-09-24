@@ -216,6 +216,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
      *
      **************************************************/
 
+    @Override
     public BST<T> clone() {
         BST<T> twin = null;
 
@@ -348,7 +349,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         return new MyIterator();
     }
 
-    //pre-order
+    // pre-order
     private class MyIterator implements Iterator<T> {
         Stack<Node<T>> stk = new Stack<Node<T>>();
 

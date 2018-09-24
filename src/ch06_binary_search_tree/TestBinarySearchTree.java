@@ -21,22 +21,22 @@ public class TestBinarySearchTree {
         }
 
         // 测试 `contains(...)` 方法
-//        System.out.println(bst.contains(6));
+        System.out.println(bst.contains(6));
 
         // 测试二分搜索树的前序遍历
-//        bst.preOrder();
-//        System.out.println();
+        bst.preOrder();
+        System.out.println();
 
         // 测试 `toString()` 方法
-//        System.out.println(bst);
+        System.out.println(bst);
 
         // 测试二分搜索树的中序遍历
-//        bst.inOrder();
-//        System.out.println();
+        bst.inOrder();
+        System.out.println();
 
         // 测试二分搜索树的后序遍历
-//        bst.postOrder();
-//        System.out.println();
+        bst.postOrder();
+        System.out.println();
 
         // 测试二分搜索树的前序遍历（非递归版本）
 //        bst.preOrderNR();

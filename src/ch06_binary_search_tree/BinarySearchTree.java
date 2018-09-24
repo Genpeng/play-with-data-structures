@@ -1,67 +1,56 @@
 package ch06_binary_search_tree;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 /**
- * The self-defined binary search tree class.
+ * A binary search tree based {@link Node} implementation.
  *
  * @param <E> the type of element in the node
  *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/07/12
  */
-public class BinarySearchTree<E extends Comparable<E>> {
-    private class Node {
-        /**
-         * The data of the Node
-         */
-        public E e;
-        /**
-         * The left subtree
-         */
-        public Node left;
-        /**
-         * The right subtree
-         */
-        public Node right;
-
-        public Node(E e, Node left, Node right) {
-            this.e = e;
-            this.left = left;
-            this.right = right;
-        }
-
-        public Node(E e) {
-            this(e, null, null);
-        }
-
-        @Override
-        public String toString() {
-            return e.toString();
-        }
-    }
-
+public class BinarySearchTree<E>
+        implements Iterable<E>, Cloneable, java.io.Serializable
+{
     /**
-     * The root of binary search tree.
+     * The root of binary search tree
      */
-    private Node root;
+    private transient Node root;
     /**
-     * The number of nodes in the binary search tree.
+     * The number of nodes in the binary search tree
      */
-    private int size;
+    private transient int size;
+    /**
+     * The comparator for comparing the elements of the nodes
+     *
+     * @serial
+     */
+    private Comparator<? super E> comparator;
 
     /**
-     * Constructor.
+     * Constructs an empty binary search tree.
      */
     public BinarySearchTree() {
-        root = null;
-        size = 0;
+        this.root = null;
+        this.size = 0;
+        this.comparator = null;
     }
 
     /**
-     * Return the number of nodes in the binary search tree.
+     * Constructs an empty binary search tree with the specified comparator.
+     *
+     * @param comparator Comparator, an object implements {@code Comparator} interface
+     *                   for comparing the elements of the nodes
+     */
+    public BinarySearchTree(Comparator<E> comparator) {
+        this.root = null;
+        this.size = 0;
+        this.comparator = comparator;
+    }
+
+    /**
+     * Returns the number of nodes in the binary search tree.
      *
      * @return int, the number of nodes
      */
@@ -70,7 +59,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     /**
-     * Check whether the binary search tree is empty.
+     * Checks whether the binary search tree is empty.
      *
      * @return boolean, true if the binary search tree is empty
      */
@@ -78,85 +67,84 @@ public class BinarySearchTree<E extends Comparable<E>> {
         return this.size == 0;
     }
 
-//    /**
-//     * Add element <code>e</code> to this binary search tree (non-recursive version)
-//     *
-//     * @param e E, the element to add
-//     */
-//    public void add(E e) {
-//        if (this.root == null) {
-//            this.root = new Node(e);
-//            size++;
-//            return;
-//        }
-//
-//        Node node = null;
-//        Node subtree = this.root;
-//        while (subtree != null) {
-//            if (e.equals(subtree.e)) {
-//                return;
-//            }
-//
-//            node = subtree;
-//
-//            if (e.compareTo(subtree.e) < 0) {
-//                subtree = subtree.left;
-//            } else {
-//                subtree = subtree.right;
-//            }
-//        }
-//
-//        if (e.compareTo(node.e) < 0) {
-//            node.left = new Node(e);
-//            size++;
-//        } else {
-//            node.right = new Node(e);
-//            size++;
-//        }
-//    }
+    /**
+     * Adds an element {@code e} to this binary search tree (non-recursive version).
+     *
+     * @param e E, the element to add
+     */
+    public void addNR(E e) {
+        if (this.root == null) {
+            this.root = new Node(e);
+            ++size;
+            return;
+        }
+
+        Node node = null;
+        Node subtree = this.root;
+        while (subtree != null) {
+            if (compare(e, subtree.e) == 0) {
+                return;
+            }
+
+            node = subtree;
+            if (compare(e, subtree.e) < 0) {
+                subtree = subtree.left;
+            } else {
+                subtree = subtree.right;
+            }
+        }
+
+        if (compare(e, node.e) < 0) {
+            node.left = new Node(e);
+            ++size;
+        } else {
+            node.right = new Node(e);
+            ++size;
+        }
+    }
 
 //    /**
-//     * Add element <code>e</code> to this binary search tree (original version, deprecated!)
+//     * Adds an element {@code e} to this binary search tree (original version, deprecated!)
 //     *
 //     * @param e E, the element to add
 //     */
 //    public void add(E e) {
 //        if (this.root == null) {
 //            this.root = new Node(e);
-//            size++;
+//            ++size;
 //        } else {
 //            add(this.root, e);
 //        }
 //    }
 
 //    /**
-//     * Add element <code>e</code> to the binary search tree whose node is <code>node</code> (original version, deprecated!)
+//     * Adds an element {@code e} to this binary search tree whose node is {@code node} (original version, deprecated!)
 //     *
-//     * @param node  Node, the root of binary search tree
-//     * @param e     E, the element to add
+//     * @param node Node, the root of binary search tree
+//     * @param e    E, the element to add
 //     */
 //    private void add(Node node, E e) {
-//        if (e.equals(node.e)) {
+//        if (compare(e, node.e) == 0) {
 //            return;
-//        } else (e.compareTo(node.e) < 0 && node.left == null) {
+//        } else if (compare(e, node.e) < 0 && node.left == null) {
 //            node.left = new Node(e);
-//            size++;
+//            ++size;
 //            return;
-//        } else if (e.compareTo(node.e) > 0 && node.right = null) {
+//        } else if (compare(e, node.e) > 0 && node.right = null) {
 //            node.right = new Node(e);
-//            size++;
+//            ++size;
 //            return;
 //        }
 //
-//        if (e.compareTo(node.e) < 0) {
+//        if (compare(e, node.e) < 0) {
 //            add(node.left, e);
-//        } else { // e.compareTo(node.e) > 0
+//        } else { // compare(e, node.e) > 0
 //            add(node.right, e);
 //        }
 //    }
 
     /**
-     * Add element <code>e</code> to this binary search tree.
+     * Adds an element {@code e} to this binary search tree.
      *
      * @param e E, the element to add
      */
@@ -165,7 +153,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     /**
-     * Add element <code>e</code> to the binary search tree whose node is <code>node</code>.
+     * Adds an element {@code e} to this binary search tree whose root is {@code node}.
      *
      * @param node  Node, the root of binary search tree
      * @param e     E, the element to add
@@ -173,69 +161,69 @@ public class BinarySearchTree<E extends Comparable<E>> {
      */
     private Node add(Node node, E e) {
         if (node == null) {
-            size++;
+            ++size;
             return new Node(e);
         }
 
-        if (e.compareTo(node.e) < 0) {
+        if (compare(e, node.e) < 0) {
             node.left = add(node.left, e);
-        } else if (e.compareTo(node.e) > 0) {
+        } else if (compare(e, node.e) > 0) {
             node.right = add(node.right, e);
         }
 
         return node;
     }
 
-//    /**
-//     * Check whether the binary search tree has element <code>e</code> (non-recursive version).
-//     *
-//     * @param e E, the element to find
-//     * @return boolean, true if the binary search tree has element <code>e</code>
-//     */
-//    public boolean contains(E e) {
-//        if (this.root == null) {
-//            return false;
-//        }
-//
-//        Node node = this.root;
-//        while (node != null) {
-//            if (e.equals(node.e)) {
-//                return true;
-//            } else if (e.compareTo(node.e) < 0) {
-//                node = node.left;
-//            } else {
-//                node = node.right;
-//            }
-//        }
-//
-//        return false;
-//    }
-
     /**
-     * Check whether the binary search tree has element <code>e</code>.
+     * Checks whether the binary search tree has element {@code e} (non-recursive version).
      *
      * @param e E, the element to find
-     * @return boolean, true if the binary search tree has element <code>e</code>
+     * @return boolean, true if the binary search tree has element {@code e}
+     */
+    public boolean containsNR(E e) {
+        if (this.root == null) {
+            return false;
+        }
+
+        Node node = this.root;
+        while (node != null) {
+            if (compare(e, node.e) == 0) {
+                return true;
+            } else if (compare(e, node.e) < 0) {
+                node = node.left;
+            } else {
+                node = node.right;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks whether the binary search tree has element {@code e}.
+     *
+     * @param e E, the element to find
+     * @return boolean, true if the binary search tree has element {@code e}
      */
     public boolean contains(E e) {
         return contains(root, e);
     }
 
     /**
-     * Check whether the binary search tree with <node>node</node> as root has element <code>e</code>.
+     * Checks whether the binary search tree with {@code node} as root has element {@code e}.
      *
      * @param node  Node, the root of the binary search tree
      * @param e     E, the element to find
-     * @return boolean, true if the binary search tree has element <code>e</code>
+     * @return boolean, true if the binary search tree has element {@code e}
      */
     private boolean contains(Node node, E e) {
         if (node == null) {
             return false;
         }
 
-        if (e.compareTo(node.e) == 0) {
+        if (compare(e, node.e) == 0) {
             return true;
-        } else if (e.compareTo(node.e) < 0) {
+        } else if (compare(e, node.e) < 0) {
             return contains(node.left, e);
         } else {
             return contains(node.right, e);
@@ -531,10 +519,10 @@ public class BinarySearchTree<E extends Comparable<E>> {
             return node;
         }
 
-        if (e.compareTo(node.e) < 0) {
+        if (compare(e, node.e) < 0) {
             node.left = remove(node.left, e);
             return node;
-        } else if (e.compareTo(node.e) > 0) {
+        } else if (compare(e, node.e) > 0) {
             node.right = remove(node.right, e);
             return node;
         } else { // e.compareTo(node.e) == 0
@@ -562,6 +550,21 @@ public class BinarySearchTree<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * Compares data from two nodes using the correct comparison method.
+     *
+     * @param e1 the first data to be compared
+     * @param e2 the second data to be compared
+     * @return a negative integer, zero, or a positive integer as the
+     *         first data is less than, equal to, or greater than the
+     *         second
+     */
+    @SuppressWarnings("unchecked")
+    private int compare(Object e1, Object e2) {
+        return comparator == null ? ((Comparable<? super E>) e1).compareTo((E) e2)
+                : comparator.compare((E) e1, (E) e2);
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
@@ -586,5 +589,100 @@ public class BinarySearchTree<E extends Comparable<E>> {
             res.append("--");
         }
         return res.toString();
+    }
+
+    private static final long serialVersionUID = 487439826767090943L;
+
+    // ==================================================================================
+    // Overrides methods of {@code Iterable} interface
+
+    @Override
+    public Iterator<E> iterator() {
+        return new BSTIterator();
+    }
+
+    // ==================================================================================
+
+    /**
+     * The iterator of the binary search tree
+     */
+    private class BSTIterator implements Iterator<E> {
+        private Stack<Node> stack = new Stack<>();
+
+        public BSTIterator() {
+            if (root != null) {
+                stack.push(root);
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !stack.isEmpty();
+        }
+
+        // TODO: To Understand `next()` method
+
+        @Override
+        public E next() {
+            Node cur = stack.peek();
+            if (cur.left != null) {
+                stack.push(cur.left);
+            } else {
+                Node tmp = stack.pop();
+                while (tmp.right == null) {
+                    if (stack.isEmpty()) {
+                        return cur.e;
+                    }
+                    tmp = stack.pop();
+                }
+            }
+            return cur.e;
+        }
+    }
+
+    /**
+     * A node of the binary search tree.
+     */
+    private class Node {
+        /**
+         * The data of the node
+         */
+        private E e;
+        /**
+         * The left reference
+         */
+        private Node left;
+        /**
+         * The right reference
+         */
+        private Node right;
+
+        /**
+         * Constructs a node with its data is {@code e}.
+         *
+         * @param e E, the element of the node
+         */
+        public Node(E e) {
+            this(e, null, null);
+        }
+
+        /**
+         * Constructs a node with its data is {@code e}, left reference is {@code left}
+         * and right reference is {@code right}.
+         *
+         * @param e     E, the element of the node
+         * @param left  Node, the left reference of the node
+         * @param right Node, the right reference of the node
+         */
+        public Node(E e, Node left, Node right) {
+            this.e = e;
+            this.left = left;
+            this.right = right;
+        }
+
+        @Override
+        public String toString() {
+            return e.toString();
+        }
     }
 }
