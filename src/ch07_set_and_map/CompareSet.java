@@ -34,7 +34,7 @@ public class CompareSet {
 
         System.out.println();
 
-        // 测试 LinkedListSet
+        // 测试 BSTSet
         Set<String> set2 = new BSTSet<>();
         double time2 = testSet(set2, pathname);
         System.out.format("[INFO] Done in %f seconds.%n", time2);
