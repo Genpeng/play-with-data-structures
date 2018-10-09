@@ -1,8 +1,9 @@
 package ch07_set_and_map;
 
 /**
- * A custom map class that uses a linked list as data container, where each node
- * of the linked list contains a key-value pair and a reference to the next node.
+ * A custom map class that uses a linked list as data container,
+ * where each node of the linked list contains a key-value pair
+ * and a reference to the next node.
  *
  * @param <K> the type of the key in the key-value pair
  * @param <V> the type of the value in the key-value pair
@@ -21,28 +22,11 @@ public class LinkedListMap<K, V> implements Map<K, V> {
     private int size;
 
     /**
-     * Constructs an empty linked list.
+     * Constructs an empty linked list map.
      */
     public LinkedListMap() {
         dummyHead = new Node();
         size = 0;
-    }
-
-    /**
-     * Returns the node according to the key.
-     *
-     * @param key K, the key we want to find
-     * @return Node, the node whose key is {@code key}
-     */
-    private Node getNode(K key) {
-        Node cur = dummyHead.next;
-        while (cur != null) {
-            if (cur.key.equals(key)) {
-                return cur;
-            }
-            cur = cur.next;
-        }
-        return null;
     }
 
     @Override
@@ -107,6 +91,28 @@ public class LinkedListMap<K, V> implements Map<K, V> {
     public boolean isEmpty() {
         return size == 0;
     }
+
+    // ============================================================================ //
+    // Auxiliary functions
+
+    /**
+     * Returns the node according to the key.
+     *
+     * @param key K, the key we want to find
+     * @return Node, the node whose key is {@code key}
+     */
+    private Node getNode(K key) {
+        Node cur = dummyHead.next;
+        while (cur != null) {
+            if (cur.key.equals(key)) {
+                return cur;
+            }
+            cur = cur.next;
+        }
+        return null;
+    }
+
+    // ============================================================================ //
 
     private class Node {
         /**
