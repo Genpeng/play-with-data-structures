@@ -351,7 +351,7 @@ public class BinarySearchTree<E>
     }
 
     /**
-     * Find the minimum value in the binary search tree.
+     * Finds out the minimum value in the binary search tree.
      *
      * @return E, the minimum value
      */
@@ -365,10 +365,10 @@ public class BinarySearchTree<E>
     }
 
     /**
-     * Find out the minimum value in the binary search tree whose root is <code>node</code>.
+     * Finds out the minimum node in the binary search tree whose root is {@code node}.
      *
      * @param node Node, the root of the binary search tree
-     * @return E, the minimum value
+     * @return Node, the minimum node
      */
     private Node minimum(Node node) {
         if (node.left == null) {
@@ -379,7 +379,7 @@ public class BinarySearchTree<E>
     }
 
     /**
-     * Find the minimum value in the binary search tree (non-recursive version).
+     * Finds the minimum value in the binary search tree (non-recursive version).
      *
      * @return E, the minimum value
      */
