@@ -379,7 +379,7 @@ public class BinarySearchTree<E>
     }
 
     /**
-     * Finds the minimum value in the binary search tree (non-recursive version).
+     * Finds out the minimum value in the binary search tree (non-recursive version).
      *
      * @return E, the minimum value
      */
@@ -396,7 +396,7 @@ public class BinarySearchTree<E>
     }
 
     /**
-     * Find the maximum value in the binary search tree.
+     * Finds out the maximum value in the binary search tree.
      *
      * @return E, the minimum value
      */
@@ -410,21 +410,21 @@ public class BinarySearchTree<E>
     }
 
     /**
-     * Find out the maximum value in the binary search tree whose root is <code>node</code>.
+     * Finds out the maximum node in the binary search tree whose root is {@code root}.
      *
-     * @param node Node, the root of the binary search tree
+     * @param root Node, the root of the binary search tree
      * @return E, the minimum value
      */
-    private Node maximum(Node node) {
-        if (node.right == null) {
-            return node;
+    private Node maximum(Node root) {
+        if (root.right == null) {
+            return root;
         }
 
-        return maximum(node.right);
+        return maximum(root.right);
     }
 
     /**
-     * Find the maximum value in the binary search tree (non-recursive version).
+     * Finds out the maximum value in the binary search tree (non-recursive version).
      *
      * @return E, the minimum value
      */
@@ -441,7 +441,7 @@ public class BinarySearchTree<E>
     }
 
     /**
-     * Remove the minimum node from the binary search tree.
+     * Removes the minimum node from the binary search tree.
      *
      * @return E, the data of the minimum node
      */
@@ -452,21 +452,21 @@ public class BinarySearchTree<E>
     }
 
     /**
-     * Remove the minimum node from a binary search tree whose root is <code>node</code>.
+     * Removes the minimum node from a binary search tree whose root is <code>node</code>.
      *
-     * @param node Node, the root of the binary search tree
+     * @param root Node, the root of the binary search tree
      * @return Node, the modified binary search tree whose minimum node is removed
      */
-    private Node removeMin(Node node) {
-        if (node.left == null) {
-            Node rightNode = node.right;
-            node.right = null;
+    private Node removeMin(Node root) {
+        if (root.left == null) {
+            Node rightNode = root.right;
+            root.right = null;
             --size;
             return rightNode;
         }
 
-        node.left = removeMin(node.left);
-        return node;
+        root.left = removeMin(root.left);
+        return root;
     }
 
     /**
@@ -499,7 +499,7 @@ public class BinarySearchTree<E>
     }
 
     /**
-     * Remove the node from the binary search tree whose data is {@code e}.
+     * Removes the node from the binary search tree whose data is {@code e}.
      *
      * @param e E, the data of the node we want to remove
      */
@@ -508,44 +508,44 @@ public class BinarySearchTree<E>
     }
 
     /**
-     * Remove the node with its data is {@code e} from a binary search tree whose root is {@code node}.
+     * Removes the node with its data is {@code e} from a binary search tree whose root is {@code root}.
      *
-     * @param node Node, the root of the binary search tree
+     * @param root Node, the root of the binary search tree
      * @param e    E, the data we want to remove
      * @return Node, a modified binary search tree
      */
-    private Node remove(Node node, E e) {
-        if (node == null) {
-            return node;
+    private Node remove(Node root, E e) {
+        if (root == null) {
+            return null;
         }
 
-        if (compare(e, node.e) < 0) {
-            node.left = remove(node.left, e);
-            return node;
-        } else if (compare(e, node.e) > 0) {
-            node.right = remove(node.right, e);
-            return node;
+        if (compare(e, root.e) < 0) {
+            root.left = remove(root.left, e);
+            return root;
+        } else if (compare(e, root.e) > 0) {
+            root.right = remove(root.right, e);
+            return root;
         } else { // e.compareTo(node.e) == 0
-            if (node.left == null) {
-                Node rightNode = node.right;
-                node.right = null;
+            if (root.left == null) {
+                Node rightNode = root.right;
+                root.right = null;
                 --size;
                 return rightNode;
             }
 
-            if (node.right == null) {
-                Node leftNode = node.left;
-                node.left = null;
+            if (root.right == null) {
+                Node leftNode = root.left;
+                root.left = null;
                 --size;
                 return leftNode;
             }
 
-            Node successor = minimum(node.right);
-            successor.right = removeMin(node.right);
+            Node successor = minimum(root.right);
+            successor.right = removeMin(root.right);
 //            ++size;
-            successor.left = node.left;
+            successor.left = root.left;
 //            --size;
-            node.left = node.right = null;
+            root.left = root.right = null;
             return successor;
         }
     }
