@@ -5,7 +5,7 @@ import util.FileUtil;
 import java.util.List;
 
 /**
- * Compare different implementations of set.
+ * Compares different implementations of set.
  *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/09/20
