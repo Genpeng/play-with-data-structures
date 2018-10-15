@@ -33,12 +33,14 @@ public class CompareMap {
     public static void main(String[] args) {
         String pathname = "data/pride-and-prejudice.txt";
 
+        // 测试 LinkedListMap
         Map<String, Integer> map1 = new LinkedListMap<>();
         double t1 = testMap(map1, pathname);
         System.out.format("[INFO] Done in %f seconds.%n", t1);
 
         System.out.println();
 
+        // 测试 BSTMap
         Map<String, Integer> map2 = new BSTMap<>();
         double t2 = testMap(map2, pathname);
         System.out.format("[INFO] Done in %f seconds.%n", t2);
