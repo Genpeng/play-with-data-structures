@@ -7,11 +7,17 @@ package ch02_array;
  * @date    2018/06/10
  */
 public class Array<E> {
+    /**
+     * All the elements in the array.
+     */
     private E[] data;
+    /**
+     * The number of elements in the array.
+     */
     private int size;
 
     /**
-     * Constructor.
+     * Constructs an empty array with default capacity.
      */
     public Array() {
         this(10);
@@ -19,7 +25,7 @@ public class Array<E> {
     }
 
     /**
-     * Constructor with parameter.
+     * Constructs an empty array with specified capacity.
      *
      * @param capacity int, the capacity of the array
      */
@@ -29,7 +35,7 @@ public class Array<E> {
     }
 
     /**
-     * Return the number of elements in the array.
+     * Returns the number of elements in the array.
      *
      * @return int, the number of elements
      */
@@ -38,7 +44,7 @@ public class Array<E> {
     }
 
     /**
-     * Return the capacity of the array.
+     * Returns the capacity of the array.
      *
      * @return int, the capacity of the array
      */
@@ -47,7 +53,7 @@ public class Array<E> {
     }
 
     /**
-     * Check whether the array is empty.
+     * Checks whether the array is empty.
      *
      * @return boolean, true if the array is empty and false otherwise
      */
@@ -56,7 +62,7 @@ public class Array<E> {
     }
 
     /**
-     * Change the capacity of the array.
+     * Changes the capacity of the array.
      *
      * @param newCapacity new capacity of the array
      */
@@ -83,11 +89,11 @@ public class Array<E> {
         return sb.toString();
     }
 
-    // Create operation
     // ============================================================================ //
+    // Create operations
 
     /**
-     * Add an element to the end of the array.
+     * Adds an element to the end of the array.
      *
      * @param e E object, the element to add
      */
@@ -96,7 +102,7 @@ public class Array<E> {
     }
 
     /**
-     * Add an element to the front of the array.
+     * Adds an element to the front of the array.
      *
      * @param e E object, the element to add
      */
@@ -105,7 +111,7 @@ public class Array<E> {
     }
 
     /**
-     * Insert an element at given index.
+     * Inserts an element at given index.
      *
      * @param index int, the position to insert element
      * @param e E object, the element to insert
@@ -126,11 +132,13 @@ public class Array<E> {
         size++;
     }
 
-    // Read operation
     // ============================================================================ //
 
+    // ============================================================================ //
+    // Read operations
+
     /**
-     * Return the element at the given index.
+     * Returns the element at the given index.
      *
      * @param index int, the position to return element
      * @return E object, the element to return
@@ -143,7 +151,7 @@ public class Array<E> {
     }
 
     /**
-     * Return the first element in the array.
+     * Returns the first element in the array.
      *
      * @return E object, the first element in the array
      */
@@ -152,7 +160,7 @@ public class Array<E> {
     }
 
     /**
-     * Return the last element in the array.
+     * Returns the last element in the array.
      *
      * @return E object, the last element in the array.
      */
@@ -161,7 +169,7 @@ public class Array<E> {
     }
 
     /**
-     * Check whether the array contains the element.
+     * Checks whether the array contains the element.
      *
      * @param e E object, the element to find
      * @return boolean, true if the array contains the element
@@ -176,7 +184,7 @@ public class Array<E> {
     }
 
     /**
-     * Find out the first index of the element in the array,
+     * Finds out the first index of the element in the array,
      * if the element does note exist, return -1.
      *
      * @param e E object, the element to find
@@ -191,11 +199,13 @@ public class Array<E> {
         return -1;
     }
 
-    // Update operation
     // ============================================================================ //
 
+    // ============================================================================ //
+    // Update operations
+
     /**
-     * Reset the value at the given index.
+     * Resets the value at the given index.
      *
      * @param index int, the position to reset element.
      * @param e E object, the new element
@@ -207,11 +217,13 @@ public class Array<E> {
         data[index] = e;
     }
 
-    // Delete operation
     // ============================================================================ //
 
+    // ============================================================================ //
+    // Delete operations
+
     /**
-     * Remove the element at the given index.
+     * Removes the element at the given index.
      *
      * @param index int, the position to remove element
      * @return E object, the element to remove
@@ -236,7 +248,7 @@ public class Array<E> {
     }
 
     /**
-     * Remove the element from the array.
+     * Removes the element from the array.
      *
      * @param e E object, the element to remove
      */
@@ -248,16 +260,39 @@ public class Array<E> {
     }
 
     /**
-     * Remove the first element in the array.
+     * Removes the first element in the array.
      */
     public E removeFirst() {
         return remove(0);
     }
 
     /**
-     * Remove the last element in the array.
+     * Removes the last element in the array.
      */
     public E removeLast() {
         return remove(size-1);
     }
+
+    // ============================================================================ //
+
+    // ============================================================================ //
+    // Some auxiliary functions
+
+    /**
+     * Swaps two elements in the array whose indices are <code>i</code> and <code>j</code>
+     * respectively.
+     *
+     * @param i int, the index of one element
+     * @param j int, the index of another element
+     */
+    public void swap(int i, int j) {
+        if (i < 0 || i > size - 1 || j < 0 || j > size - 1) {
+            throw new IllegalArgumentException("[ERROR] Illegal index!");
+        }
+        E tmp = data[i];
+        data[i] = data[j];
+        data[j] = tmp;
+    }
+
+    // ============================================================================ //
 }
