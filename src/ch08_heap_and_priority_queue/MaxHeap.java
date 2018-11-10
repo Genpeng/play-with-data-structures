@@ -55,9 +55,46 @@ public class MaxHeap<E extends Comparable<E>> {
     // ======================================================================================= //
     // Create operations
 
+    /**
+     * Adds an element to the heap.
+     *
+     * @param e E, the element to added
+     */
     public void add(E e) {
         data.addLast(e);
         siftUp(data.getSize() - 1);
+    }
+
+    // ======================================================================================= //
+
+    // ======================================================================================= //
+    // Read operations
+
+    /**
+     * Peeks the element of the root in the heap (the maximum or minimum element).
+     *
+     * @return E, the element of the root in the heap
+     */
+    public E findMax() {
+        if (data.getSize() == 0) {
+            throw new IllegalArgumentException("[ERROR] The max heap is empty!");
+        }
+        return data.getFirst();
+    }
+
+    public E extractMax() {
+        E ret = findMax();
+
+        // 1. Exchanges the first and last elements
+        data.swap(0, data.getSize() - 1);
+
+        // 2. Removes the last element (the maximum element)
+        data.removeLast();
+
+        // 3. Sifts down and adjusts the structure of the heap
+        siftDown(0);
+
+        return ret;
     }
 
     // ======================================================================================= //
@@ -109,6 +146,28 @@ public class MaxHeap<E extends Comparable<E>> {
         while (k > 0 && data.get(parent(k)).compareTo(data.get(k)) < 0) {
             data.swap(k, parent(k));
             k = parent(k);
+        }
+    }
+
+    /**
+     * Adjusts the structure of the binary heap after return the element of the root,
+     * so that all the nodes satisfy properties of binary heap.
+     *
+     * @param k int, the index of the root
+     */
+    private void siftDown(int k) {
+        while (leftChild(k) < data.getSize()) {
+            int i = leftChild(k);
+            if (i + 1 < data.getSize() &&
+                data.get(i+1).compareTo(data.get(i)) > 0) {
+                ++i; // i is the index of maximum element in the left and right children
+            }
+
+            if (data.get(k).compareTo(data.get(i)) >= 0) {
+                break;
+            }
+            data.swap(k, i);
+            k = i;
         }
     }
 
