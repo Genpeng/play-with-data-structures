@@ -35,6 +35,18 @@ public class MaxHeap<E extends Comparable<E>> {
     }
 
     /**
+     * Constructs a max heap with a specified array.
+     *
+     * @param arr E[], the specified array
+     */
+    public MaxHeap(E[] arr) {
+        data = new Array<>(arr);
+        for (int i = parent(arr.length - 1); i >= 0; --i) {
+            siftDown(i);
+        }
+    }
+
+    /**
      * Returns the number of elements in the heap.
      *
      * @return int, the number of elements in the heap
@@ -82,6 +94,11 @@ public class MaxHeap<E extends Comparable<E>> {
         return data.getFirst();
     }
 
+    /**
+     * Returns the element of the root in the heap (the maximum or minimum element).
+     *
+     * @return E, the element of the root in the heap
+     */
     public E extractMax() {
         E ret = findMax();
 
@@ -94,6 +111,24 @@ public class MaxHeap<E extends Comparable<E>> {
         // 3. Sifts down and adjusts the structure of the heap
         siftDown(0);
 
+        return ret;
+    }
+
+    // ======================================================================================= //
+
+    // ======================================================================================= //
+    // Update operations
+
+    /**
+     * Replaces the element of the root in the heap with a new element <code>e</code>.
+     *
+     * @param e E, the new element
+     * @return E, the element of the root in the heap (element to be replaced)
+     */
+    public E replace(E e) {
+        E ret = findMax();
+        data.set(0, e);
+        siftDown(0);
         return ret;
     }
 

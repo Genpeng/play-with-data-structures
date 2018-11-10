@@ -35,6 +35,19 @@ public class Array<E> {
     }
 
     /**
+     * Constructs a dynamic array with a static array.
+     *
+     * @param arr E[], the static array
+     */
+    public Array(E[] arr) {
+        data = (E[]) new Object[arr.length];
+        for (int i = 0; i < arr.length; ++i) {
+            data[i] = arr[i];
+        }
+        size = arr.length;
+    }
+
+    /**
      * Returns the number of elements in the array.
      *
      * @return int, the number of elements
