@@ -1,4 +1,4 @@
-package ch09_segment_tree;
+package ch09_segment_tree.leetcode303;
 
 /**
  * This is the solution of No. 303 problem in the LeetCode, which uses

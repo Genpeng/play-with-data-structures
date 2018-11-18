@@ -1,9 +1,11 @@
-package ch09_segment_tree;
+package ch09_segment_tree.leetcode303;
+
+import ch09_segment_tree.SegmentTree;
 
 /**
  * This is the solution of No. 303 problem in the LeetCode, which uses
  * customized segment tree class, the website of the problem is as follow:
- * https://leetcode-cn.com/problems/range-sum-query-immutable/description/
+ * https://leetcode.com/problems/range-sum-query-immutable/
  *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/11/18
