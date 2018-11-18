@@ -76,7 +76,7 @@ public class SegmentTree<E> {
      * @return E, the corresponding element at the given index
      */
     public E get(int index) {
-        if (index < 0 || index > data.length - 1) {
+        if (isIllegal(index)) {
             throw new IllegalArgumentException("[ERROR] Illegal index!");
         }
         return data[index];
@@ -94,6 +94,21 @@ public class SegmentTree<E> {
             throw new IllegalArgumentException("[ERROR] Illegal query index!");
         }
         return query(0, 0, data.length - 1, queryL, queryR);
+    }
+
+    /**
+     * Updates the element at given index, and at the same time, updates the
+     * corresponding segment tree.
+     *
+     * @param index int, the position to update
+     * @param e E, the new value at the given index
+     */
+    public void set(int index, E e) {
+        if (isIllegal(index)) {
+            throw new IllegalArgumentException("[ERROR] Illegal index!");
+        }
+        data[index] = e;
+        set(0, 0, data.length - 1, index, e);
     }
 
     // ============================================================================ //
@@ -198,6 +213,37 @@ public class SegmentTree<E> {
             E rightResult = query(rightChildIndex, mid + 1, r, mid + 1, queryR);
             return merger.merge(leftResult, rightResult);
         }
+    }
+
+    /**
+     * Updates the segment tree, so that the element at the given index becomes a new value,
+     * where <code>treeIndex</code> represents the index of the root of the segment tree,
+     * <code>l</code> is the lower bound index of the root, and <code>r</code> is the upper
+     * bound index of the root.
+     *
+     * @param treeIndex int, the index of the root of the segment tree
+     * @param l         int, the lower bound index of the root
+     * @param r         int, the upper bound index of the root
+     * @param index     int, the position to update
+     * @param e         E, the new value at the given index
+     */
+    private void set(int treeIndex, int l, int r, int index, E e) {
+        if (l == r) {
+            tree[treeIndex] = e;
+            return;
+        }
+
+        int leftChildIndex = leftChild(treeIndex);
+        int rightChildIndex = rightChild(treeIndex);
+
+        int mid = l + (r - l) / 2;
+        if (index <= mid) {
+            set(leftChildIndex, l, mid, index, e);
+        } else {
+            set(rightChildIndex, mid + 1, r, index, e);
+        }
+
+        tree[treeIndex] = merger.merge(tree[leftChildIndex], tree[rightChildIndex]);
     }
 
     // ============================================================================ //
