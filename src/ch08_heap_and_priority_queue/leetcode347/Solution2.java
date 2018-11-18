@@ -1,4 +1,4 @@
-package ch08_heap_and_priority_queue;
+package ch08_heap_and_priority_queue.leetcode347;
 
 import java.util.*;
 import java.util.PriorityQueue;
@@ -12,7 +12,7 @@ import java.util.PriorityQueue;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/11/11
  */
-public class LeetCode347Solution2 {
+public class Solution2 {
     public List<Integer> topKFrequent(int[] nums, int k) {
         // 统计元素的频率
         Map<Integer, Integer> map = new HashMap<>(16);
@@ -65,7 +65,7 @@ public class LeetCode347Solution2 {
     public static void main(String[] args) {
         int[] nums = {1, 1, 1, 2, 2, 3};
         int k = 2;
-        LeetCode347Solution2 solution = new LeetCode347Solution2();
+        Solution2 solution = new Solution2();
         printList(solution.topKFrequent(nums, k));
     }
 }

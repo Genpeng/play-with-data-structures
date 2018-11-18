@@ -1,4 +1,6 @@
-package ch08_heap_and_priority_queue;
+package ch08_heap_and_priority_queue.leetcode347;
+
+import ch08_heap_and_priority_queue.PriorityQueue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +16,7 @@ import java.util.Map;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/11/11
  */
-public class LeetCode347Solution {
+public class Solution {
     private class Freq implements Comparable<Freq> {
         int e, freq;
 
@@ -80,7 +82,7 @@ public class LeetCode347Solution {
     public static void main(String[] args) {
         int[] nums = {1, 1, 1, 2, 2, 3};
         int k = 2;
-        LeetCode347Solution solution = new LeetCode347Solution();
+        Solution solution = new Solution();
         printList(solution.topKFrequent(nums, k));
     }
 }
