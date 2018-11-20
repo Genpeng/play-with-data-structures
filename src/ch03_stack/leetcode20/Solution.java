@@ -1,15 +1,16 @@
-package ch03_stack;
+package ch03_stack.leetcode20;
 
 import java.util.Stack;
 
 /**
- * The 20th problem of LeetCode.
+ * This is the solution of No. 20 problem in the LeetCode,
+ * the website of the problem is as follow:
  * https://leetcode.com/problems/valid-parentheses/description/
  *
- * @author StrongXGP
+ * @author  StrongXGP (xgp1227@gmail.com)
  */
-public class ValidParentheses {
-    public boolean isValid1(String s) {
+public class Solution {
+    public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i=0; i<s.length(); i++) {
             char c = s.charAt(i);
@@ -34,22 +35,6 @@ public class ValidParentheses {
             }
         }
 
-        return stack.isEmpty();
-    }
-
-    public boolean isValid2(String s) {
-        Stack<Character> stack = new Stack<>();
-        for (char c : s.toCharArray()) {
-            if (c == '(') {
-                stack.push(')');
-            } else if (c == '[') {
-                stack.push(']');
-            } else if (c == '{') {
-                stack.push('}');
-            } else if (stack.isEmpty() || c != stack.pop()) {
-                return false;
-            }
-        }
         return stack.isEmpty();
     }
 }

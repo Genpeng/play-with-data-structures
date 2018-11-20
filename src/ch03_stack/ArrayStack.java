@@ -47,29 +47,35 @@ public class ArrayStack<E> implements Stack<E> {
         return array.isEmpty();
     }
 
-    // Create operation
     // ========================================================================= //
+    // Create operation
 
     @Override
     public void push(E e) {
         array.addLast(e);
     }
 
-    // Read operation
     // ========================================================================= //
+
+    // ========================================================================= //
+    // Read operation
 
     @Override
     public E peek() {
         return array.getLast();
     }
 
-    // Delete operation
     // ========================================================================= //
+
+    // ========================================================================= //
+    // Delete operation
 
     @Override
     public E pop() {
         return array.removeLast();
     }
+
+    // ========================================================================= //
 
     @Override
     public String toString() {
