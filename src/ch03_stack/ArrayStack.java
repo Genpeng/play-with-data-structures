@@ -3,7 +3,7 @@ package ch03_stack;
 import ch02_array.Array;
 
 /**
- * The self-defined stack class.
+ * A customized stack class which implements on a dynamic array.
  *
  * @param <E> the type of element
  * @author  StrongXGP
@@ -13,14 +13,14 @@ public class ArrayStack<E> implements Stack<E> {
     private Array<E> array;
 
     /**
-     * Constructor.
+     * Constructs an empty stack.
      */
     public ArrayStack() {
         array = new Array<>();
     }
 
     /**
-     * Constructor with parameters.
+     * Constructs an empty stack with specified capacity.
      *
      * @param capacity the number of the elements
      */
@@ -34,7 +34,7 @@ public class ArrayStack<E> implements Stack<E> {
     }
 
     /**
-     * Return the capacity of the stack.
+     * Returns the capacity of the stack.
      *
      * @return int, the capacity of the stack
      */
@@ -76,9 +76,9 @@ public class ArrayStack<E> implements Stack<E> {
         StringBuilder sb = new StringBuilder();
         sb.append("Stack: ");
         sb.append("[");
-        for (int i=0; i<array.getSize(); i++) {
+        for (int i = 0; i < array.getSize(); ++i) {
             sb.append(array.get(i));
-            if (i < array.getSize()-1) {
+            if (i < array.getSize() - 1) {
                 sb.append(", ");
             }
         }

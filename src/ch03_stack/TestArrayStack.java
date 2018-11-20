@@ -8,8 +8,9 @@ package ch03_stack;
  */
 public class TestArrayStack {
     public static void main(String[] args) {
-        ArrayStack<Integer> stack = new ArrayStack<>();
-        for (int i=0; i<5; i++) {
+        int n = 5;
+        Stack<Integer> stack = new ArrayStack<>();
+        for (int i = 0; i < n; ++i) {
             stack.push(i);
             System.out.println(stack);
         }
