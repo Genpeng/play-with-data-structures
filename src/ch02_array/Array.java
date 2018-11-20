@@ -130,8 +130,8 @@ public class Array<E> {
      * @param e E object, the element to insert
      */
     public void insert(int index, E e) {
-        if (index < 0 || index > size) {
-            throw new IllegalArgumentException("Add failed. Illegal index!!!");
+        if (isIllegal(index)) {
+            throw new IllegalArgumentException("[ERROR] Add failed. Illegal index!");
         }
 
         if (size == data.length) {
@@ -157,8 +157,8 @@ public class Array<E> {
      * @return E object, the element to return
      */
     public E get(int index) {
-        if (index < 0 || index > size-1) {
-            throw new IllegalArgumentException("Get failed. Illegal index!!!");
+        if (isIllegal(index)) {
+            throw new IllegalArgumentException("[ERROR] Get failed. Illegal index!");
         }
         return data[index];
     }
@@ -188,7 +188,7 @@ public class Array<E> {
      * @return boolean, true if the array contains the element
      */
     public boolean contains(E e) {
-        for (int i=0; i<size; i++) {
+        for (int i = 0; i < size; ++i) {
             if (e.equals(data[i])) {
                 return true;
             }
@@ -204,7 +204,7 @@ public class Array<E> {
      * @return the index of the element or -1 (if not exist)
      */
     public int find(E e) {
-        for (int i=0; i<size; i++) {
+        for (int i = 0; i < size; ++i) {
             if (e.equals(data[i])) {
                 return i;
             }
@@ -224,8 +224,8 @@ public class Array<E> {
      * @param e E object, the new element
      */
     public void set(int index, E e) {
-        if (index < 0 || index > size-1) {
-            throw new IllegalArgumentException("Set failed. Illegal index!!!");
+        if (isIllegal(index)) {
+            throw new IllegalArgumentException("[ERROR] Set failed. Illegal index!");
         }
         data[index] = e;
     }
@@ -242,19 +242,19 @@ public class Array<E> {
      * @return E object, the element to remove
      */
     public E remove(int index) {
-        if (index < 0 || index > size-1) {
-            throw new IllegalArgumentException("Remove failed. Illegal index!!!");
+        if (isIllegal(index)) {
+            throw new IllegalArgumentException("[ERROR] Remove failed. Illegal index!");
         }
 
         E res = data[index];
-        for (int i=index+1; i<size; i++) {
+        for (int i = index + 1; i < size; ++i) {
             data[i-1] = data[i];
         }
         size--;
         data[size] = null;
 
-        if (size == data.length/4 && data.length/2 != 0) {
-            resize(data.length/2);
+        if (size == data.length / 4 && data.length / 2 != 0) {
+            resize(data.length / 2);
         }
 
         return res;
@@ -299,12 +299,32 @@ public class Array<E> {
      * @param j int, the index of another element
      */
     public void swap(int i, int j) {
-        if (i < 0 || i > size - 1 || j < 0 || j > size - 1) {
+        if (isIllegal(i) || isIllegal(j)) {
             throw new IllegalArgumentException("[ERROR] Illegal index!");
         }
         E tmp = data[i];
         data[i] = data[j];
         data[j] = tmp;
+    }
+
+    /**
+     * Checks whether the index of array is legal.
+     *
+     * @param index int, the index of array
+     * @return boolean, true if the index is legal and false otherwise
+     */
+    private boolean isLegal(int index) {
+        return index >= 0 && index <= size - 1;
+    }
+
+    /**
+     * Checks whether the index of array is illegal.
+     *
+     * @param index index int, the index of array
+     * @return boolean, true if the index is illegal and false otherwise
+     */
+    private boolean isIllegal(int index) {
+        return !isLegal(index);
     }
 
     // ============================================================================ //
