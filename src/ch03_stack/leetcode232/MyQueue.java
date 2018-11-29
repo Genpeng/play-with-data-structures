@@ -1,5 +1,8 @@
 package ch03_stack.leetcode232;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 import java.util.Stack;
 
 /**
@@ -55,16 +58,22 @@ public class MyQueue {
     }
 
     public static void main(String[] args) {
+        int n = 10000;
         MyQueue queue = new MyQueue();
-        queue.push(1);
-        queue.push(2);
-        queue.push(3);
-        System.out.println(queue.pop());
-        queue.push(4);
-        queue.push(5);
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
+        Random random = new Random();
+
+        long startTime = System.nanoTime();
+
+        for (int i = 0; i < n; ++i) {
+            queue.push(random.nextInt(Integer.MAX_VALUE));
+        }
+
+        List<Integer> res = new LinkedList<>();
+        while (!queue.empty()) {
+            res.add(queue.pop());
+        }
+
+        long endTime = System.nanoTime();
+        System.out.format("The time consumed is %f seconds.", (endTime - startTime) / 1000000000.0);
     }
 }
