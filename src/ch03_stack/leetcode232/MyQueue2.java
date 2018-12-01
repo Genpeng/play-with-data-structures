@@ -15,30 +15,30 @@ import java.util.Stack;
  */
 public class MyQueue2 {
     /**
-     * The first stack used to implement queue
+     * The stack used to implement enqueue functionality
      */
-    private Stack<Integer> s1;
+    private Stack<Integer> inStack;
     /**
-     * The second stack used to implement queue
+     * The stack used to implement dequeue functionality
      */
-    private Stack<Integer> s2;
+    private Stack<Integer> outStack;
     /**
-     * The front element in the stack s2 's queue
+     * The front element in the stack `inStack` 's queue
      */
     private int front;
 
     /** Initialize your data structure here. */
     public MyQueue2() {
-        s1 = new Stack<>();
-        s2 = new Stack<>();
+        inStack = new Stack<>();
+        outStack = new Stack<>();
     }
 
     /** Push element x to the back of queue. */
     public void push(int x) {
-        if (s1.empty()) {
+        if (inStack.empty()) {
             front = x;
         }
-        s1.push(x);
+        inStack.push(x);
     }
 
     /** Removes the element from in front of queue and returns that element. */
@@ -47,12 +47,12 @@ public class MyQueue2 {
             throw new IllegalArgumentException("[ERROR] The queue is empty!");
         }
 
-        if (s2.isEmpty()) {
-            while (!s1.isEmpty()) {
-                s2.push(s1.pop());
+        if (outStack.isEmpty()) {
+            while (!inStack.isEmpty()) {
+                outStack.push(inStack.pop());
             }
         }
-        return s2.pop();
+        return outStack.pop();
     }
 
     /** Get the front element. */
@@ -61,8 +61,8 @@ public class MyQueue2 {
             throw new IllegalArgumentException("[ERROR] The queue is empty!");
         }
 
-        if (!s2.isEmpty()) {
-            return s2.peek();
+        if (!outStack.isEmpty()) {
+            return outStack.peek();
         } else {
             return front;
         }
@@ -70,7 +70,7 @@ public class MyQueue2 {
 
     /** Returns whether the queue is empty. */
     public boolean empty() {
-        return s1.isEmpty() && s2.isEmpty();
+        return inStack.isEmpty() && outStack.isEmpty();
     }
 
     public static void main(String[] args) {
