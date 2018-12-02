@@ -1,4 +1,4 @@
-package ch03_stack.leetcode232;
+package ch03_queue.leetcode232;
 
 import java.util.LinkedList;
 import java.util.List;
