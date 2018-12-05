@@ -1,4 +1,4 @@
-package ch04_linked_list;
+package ch04_linked_list.leetcode203;
 
 public class ListNode {
     int val;

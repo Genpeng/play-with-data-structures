@@ -1,7 +1,8 @@
-package ch04_linked_list;
+package ch04_linked_list.leetcode203;
 
 /**
- * The 203th problem of LeetCode.
+ * This is the solution of no. 203 problem in the LeetCode,
+ * the website of the problem is as follow:
  * https://leetcode.com/problems/remove-linked-list-elements/description/
  *
  * @author StrongXGP
