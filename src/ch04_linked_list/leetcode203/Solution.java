@@ -7,7 +7,7 @@ package ch04_linked_list.leetcode203;
  *
  * @author StrongXGP
  */
-public class RemoveLinkedListElements {
+public class Solution {
     /**
      * Solution without dummy head.
      *
@@ -84,7 +84,7 @@ public class RemoveLinkedListElements {
         ListNode head = new ListNode(nums);
         System.out.println(head);
 
-        ListNode res = (new RemoveLinkedListElements()).removeElements3(head, 6);
+        ListNode res = (new Solution()).removeElements3(head, 6);
         System.out.println(head);
     }
 }
