@@ -3,14 +3,14 @@ package ch08_heap_and_priority_queue.leetcode692;
 import java.util.*;
 
 /**
- * This is the solution of No. 692 problem in the LeetCode,
+ * This is the solution of No. 692 problem in the LeetCode by using bucket sort,
  * the website of the problem is as follow:
  * https://leetcode.com/problems/top-k-frequent-words/
  *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/12/05
  */
-public class Solution {
+public class Solution3 {
     public List<String> topKFrequent(String[] words, int k) {
         // 1. 统计单词的词频
         // 时间复杂度为 O(n)
