@@ -31,6 +31,8 @@ public class Solution4 {
         }
 
         // 3. 取出 top k 词频的单词（备注：词频相同的单词按照字母顺序排列）
+        //    时间复杂度为 O(n log(n))，具体地，可以参考对于波波老师的提问：
+        //    https://coding.imooc.com/learn/questiondetail/91771.html
         List<String> result = new ArrayList<>();
         for (int i = words.length; i > 0 && result.size() < k; --i) {
             if (bucket[i] != null) {
