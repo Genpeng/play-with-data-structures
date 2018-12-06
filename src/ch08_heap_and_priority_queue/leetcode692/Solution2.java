@@ -20,17 +20,15 @@ public class Solution2 {
         }
 
         // 2. 维护一个大小为k的最小堆，遍历上面得到的map，
-        //    如果当前单词的词频大于堆顶单词的词频，替换堆顶的单词
+        //    将单词添加到堆中，当堆中元素的数目大于k时，弹出堆顶元素
         //    时间复杂度为 O(N * log(k))
         PriorityQueue<String> pq = new PriorityQueue<>(
                 (w1, w2) -> wordFreq.get(w1).equals(wordFreq.get(w2)) ?
                         w2.compareTo(w1) : wordFreq.get(w1) - wordFreq.get(w2));
         for (String word : wordFreq.keySet()) {
-            if (pq.size() < k) {
-                pq.offer(word);
-            } else if (wordFreq.get(word) > wordFreq.get(pq.peek())) {
+            pq.offer(word);
+            if (pq.size() > k) {
                 pq.poll();
-                pq.offer(word);
             }
         }
 
@@ -42,5 +40,11 @@ public class Solution2 {
         }
         Collections.reverse(result);
         return result;
+    }
+
+    public static void main(String[] args) {
+        String[] words = {"i", "love", "leetcode", "i", "love", "coding"};
+        int k = 1;
+        System.out.println((new Solution2()).topKFrequent(words, k));
     }
 }
